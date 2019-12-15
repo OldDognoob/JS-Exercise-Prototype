@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
   EXAMPLE TASK:
     - Write an Airplane constructor that initializes `name` from an argument.
@@ -38,9 +39,49 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   /** @type {any[]} */
+//   this.stomach = [];
+// };
 
+// Person.prototype.greet = function () {
+//   return `My name is ${this.name} and I am ${this.age} years old`
+// };
+
+// Person.prototype.eat = function (food) {
+//   return this.stomach.push(food);
+// }
+
+// Person.prototype.poop = function () {
+//   return this.stomach = [];
+// }
+
+// var betty = new Person("Betty", 36);
+// console.log(betty);
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+};
+
+Person.prototype.greet = function () {
+  return `My name is ${this.name} and I am ${this.age} years old`
+};
+
+Person.prototype.eat = function (food) {
+  return this.stomach.push(food);
 }
+
+Person.prototype.poop = function () {
+  return this.stomach = [];
+}
+
+var lucas = new Person("Lucas", 36);
+console.log(lucas);
+
 
 /*
   TASK 2
@@ -56,9 +97,59 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+//  function Car(model, milesPerGallon) {
+//      this.model = model;
+//      this.milesPerGallon = milesPerGallon;
+//      this.odometer = 0;
+//      this.tank = 0;
+//   };
+  
+  
+//   Car.prototype.fill = function (gallons) {
+//     return this.tank += gallons;
+//   };
+  
+//   howfarIcanDrive = this.tank * milesPerGallon
+  
+//   Car.prototype.drive = function(distance){
+//     if(howfarIcanDrive > distance){
+//       this.tank -=gallons
+//       this.odometer += distance
+//     }else{
+//       this.odometer += howfarIcanDrive
+//     } this.tank = 0
+//      return 'I ran out of fuel ${howfarIcanDrive}'; 
+//   }
 
+function Car (model, make, distance){
+  this.brand = model;
+  this.builtby = make;
+  this.odometer = 0;
+  this.travel = distance;
 }
+
+const newCar = new Car(`Genz`, `Hunday`, 30);
+
+Car.prototype.drive = function(){ 
+  return this.odometer =+ this.travel;
+}
+console.log(newCar.drive());
+
+Car.prototype.crash = function(){ 
+  Car.prototype.drive = function(){return `I crashed at ${this.odometer}`;};
+}
+newCar.crash();
+console.log(newCar.drive());
+
+Car.prototype.repair = function(){ 
+  Car.prototype.drive = function(){ 
+    return this.odometer + this.travel;
+  }
+}
+newCar.repair();
+console.log(newCar.drive());
+
+
 
 /*
   TASK 3
@@ -70,6 +161,9 @@ function Car() {
 function Baby() {
 
 }
+
+
+
 
 /* 
   TASK 4
