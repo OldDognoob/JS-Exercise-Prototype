@@ -38,29 +38,6 @@ Airplane.prototype.land = function () {
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
-
-// function Person(name, age) {
-//   this.name = name;
-//   this.age = age;
-//   /** @type {any[]} */
-//   this.stomach = [];
-// };
-
-// Person.prototype.greet = function () {
-//   return `My name is ${this.name} and I am ${this.age} years old`
-// };
-
-// Person.prototype.eat = function (food) {
-//   return this.stomach.push(food);
-// }
-
-// Person.prototype.poop = function () {
-//   return this.stomach = [];
-// }
-
-// var betty = new Person("Betty", 36);
-// console.log(betty);
-
 function Person(name, age) {
   this.name = name;
   this.age = age;
@@ -76,11 +53,29 @@ Person.prototype.eat = function (food) {
 }
 
 Person.prototype.poop = function () {
-  return this.stomach = [];
-}
+   this.stomach = [];
+};
 
-var lucas = new Person("Lucas", 36);
-console.log(lucas);
+
+let kerk = new Person("Kerk", 42);
+console.log(kerk.greet());
+kerk.eat("salad");
+kerk.eat("sausage");
+kerk.eat("cake");
+kerk.eat("icecream");
+kerk.eat("sweets");
+kerk.eat("eggs");
+kerk.eat("burgers");
+kerk.eat("chicken");
+kerk.eat("orange");
+kerk.eat("cucumber");
+console.log(kerk.stomach)
+
+
+kerk.poop();
+console.log(kerk.stomach)
+
+
 
 
 /*
@@ -97,57 +92,53 @@ console.log(lucas);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-//  function Car(model, milesPerGallon) {
-//      this.model = model;
-//      this.milesPerGallon = milesPerGallon;
-//      this.odometer = 0;
-//      this.tank = 0;
-//   };
+ function Car(model, milesPerGallon) {
+     this.model = model;
+     this.milesPerGallon = milesPerGallon;
+     this.odometer = 0;
+     this.tank = 0;
+  };
   
   
-//   Car.prototype.fill = function (gallons) {
-//     return this.tank += gallons;
-//   };
+  Car.prototype.fill = function (gallons) {
+    return this.tank += gallons;
+  };
   
-//   howfarIcanDrive = this.tank * milesPerGallon
+  // howfarIcanDrive = this.tank * milesPerGallon
   
-//   Car.prototype.drive = function(distance){
-//     if(howfarIcanDrive > distance){
-//       this.tank -=gallons
-//       this.odometer += distance
-//     }else{
-//       this.odometer += howfarIcanDrive
-//     } this.tank = 0
-//      return 'I ran out of fuel ${howfarIcanDrive}'; 
-//   }
-
-function Car (model, make, distance){
-  this.brand = model;
-  this.builtby = make;
-  this.odometer = 0;
-  this.travel = distance;
-}
-
-const newCar = new Car(`Genz`, `Hunday`, 30);
-
-Car.prototype.drive = function(){ 
-  return this.odometer =+ this.travel;
-}
-console.log(newCar.drive());
-
-Car.prototype.crash = function(){ 
-  Car.prototype.drive = function(){return `I crashed at ${this.odometer}`;};
-}
-newCar.crash();
-console.log(newCar.drive());
-
-Car.prototype.repair = function(){ 
-  Car.prototype.drive = function(){ 
-    return this.odometer + this.travel;
+  Car.prototype.drive = function(distance){
+    if(howfarIcanDrive > distance){
+      this.tank -=gallons
+      this.odometer += distance
+    }else{
+      this.odometer += howfarIcanDrive
+    } this.tank = 0
+     return 'I ran out of fuel ${howfarIcanDrive}'; 
   }
-}
-newCar.repair();
-console.log(newCar.drive());
+
+// function Car (name, make) {
+//   this.model = name;
+//   this.make = make;
+//   this.canBeDriven = true;
+// }
+
+// Car.prototype.drive = function (distance) {
+//   this.odometer = distance;
+// };
+// Car.prototype.crash = function () {
+//   this.canBeDriven = false;
+//   return `I crashed at ${this.odometer} kilometers!`;
+// };
+// Car.prototype.repair = function () {
+// this.canBeDriven = true;
+// }
+
+const hyundai = new Car("Huyndai", "GTX");
+hyundai.drive(10);
+let runOutOfFuel = hyundai.tank();
+console.log(runOutOfFuel);
+hyundai.repair();
+console.log(hyundai);
 
 
 
@@ -158,9 +149,29 @@ console.log(newCar.drive());
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favToy) {
+  Person.call(this, name, age, favToy);
+  this.favToy = baby.favToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.playWithToy = function(){
+  return `My is ${this.name}, I am ${this.age} and love to play with ${this.favToy}`;
+};
+
+const paul = new Baby({
+  name:'Paul',
+  age: 3,
+  favToy: "rockets"
+})
+
+console.log(paul);
+console.log(paul.speak());
+console.log(paul.play());
+
+// const paul = new Baby("Paul", 3, 'rockets');
+// console.log(paul);
+// console.log(paul.play());
+
 
 
 
@@ -169,10 +180,10 @@ function Baby() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.  Global Binding - this refers to 'Window' object, meaning everything in JS. 
+  2.  Implicit binding - 'this' refers to the object to the left of the dot in the dot notation.
+  3.  New keyword binding - when using a constructor to instantiate objects, 'this' refers to the object being created
+  4.  Explicit binding - 'this' is explicitely defined and refers to whatever we are passing.
 */
 
 
